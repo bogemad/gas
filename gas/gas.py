@@ -15,6 +15,38 @@ def total_predicted_genes(recs):
                 genes.append(feat)
     return len(genes)
 
+def total_predicted_mRNA(recs):
+    genes = []
+    for rec in recs:
+        for feat in rec.features:
+            if feat.type == 'mRNA':
+                genes.append(feat)
+    return len(genes)
+
+def total_predicted_tRNA(recs):
+    genes = []
+    for rec in recs:
+        for feat in rec.features:
+            if feat.type == 'tRNA':
+                genes.append(feat)
+    return len(genes)
+
+def total_predicted_rRNA(recs):
+    genes = []
+    for rec in recs:
+        for feat in rec.features:
+            if feat.type == 'rRNA':
+                genes.append(feat)
+    return len(genes)
+
+def total_predicted_CDS(recs):
+    genes = []
+    for rec in recs:
+        for feat in rec.features:
+            if feat.type == 'CDS':
+                genes.append(feat)
+    return len(genes)
+
 def percentage_coding(recs):
     all_seq = ''
     coding_seq = ''
@@ -344,6 +376,10 @@ def gas(gbs, output):
         d = {}
         recs = list(SeqIO.parse(gb, 'gb'))
         d["Total predicted genes"] = total_predicted_genes(recs)
+        d["Total predicted mRNA"] = total_predicted_mRNA(recs)
+        d["Total predicted tRNA"] = total_predicted_tRNA(recs)
+        d["Total predicted rRNA"] = total_predicted_rRNA(recs)
+        d["Total predicted CDS"] = total_predicted_CDS(recs)
         d["Percentage coding"] = percentage_coding(recs)
         d['Total sequence length'] = total_sequence_length(recs)
         d['Percentage GC'] = percentage_gc(recs)
