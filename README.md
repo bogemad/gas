@@ -3,6 +3,7 @@ Basic annotation statistics for eukaryotic genomes using Genbank files.
 
 ## Statistics currently calculated:
 
+```
 Total predicted genes  
 Percentage coding  
 Total sequence length  
@@ -33,9 +34,11 @@ Longest intergenic region
 Shortest intergenic region  
 Average intergenic length  
 Intergenic percent GC  
+```
 
 ## Usage:
 
+```
 usage: gas [-h] [-o OUT] [-g GBKS [GBKS ...]]  
 
 GAS (Genbank Annotation Statistics): Basic annotation statistics for eukaryotic genomes from Genbank files.  
@@ -44,4 +47,4 @@ options:
   -h, --help          show this help message and exit  
   -o OUT              Output file  
   -g GBKS [GBKS ...]  GenBank files for annotation stats. As many as you like.  
-
+```
