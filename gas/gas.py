@@ -370,7 +370,7 @@ def intergenic_percent_gc(recs):
             intergene_seq += intergenes.extract(rec.seq)
     return round(GC(intergene_seq),2)
 
-def gas(gbs, output):
+def run_gas(gbs, output):
     dfd = {}
     for gb in gbs:
         d = {}
@@ -416,4 +416,4 @@ def gas(gbs, output):
 if __name__ == '__main__':
     gbs = sys.argv[1:-1]
     output = sys.argv[-1]
-    gas(gbs, output)
+    run_gas(gbs, output)

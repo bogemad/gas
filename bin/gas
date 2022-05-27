@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from gas import gas
+from gas.gas import run_gas
 
 parser = argparse.ArgumentParser(description="GAS (Genbank Annotation Statistics): Basic annotation statistics for eukaryotic genomes from Genbank files.")
 parser.add_argument('-o', action='store', dest='out', help='Output file')
@@ -9,4 +9,4 @@ parser.add_argument('-g', action='store', dest='gbks', nargs='+', help='GenBank 
 
 args = parser.parse_args()
 
-gas(args.gbks, args.out)
+run_gas(args.gbks, args.out)
