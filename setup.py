@@ -15,7 +15,7 @@ setup(
     license = "GPL-3.0",
     keywords = "genomics gene annotation statistics",
     url = "https://github.com/bogemad/gas",
-    py_modules=['gas/gas.py'],
+    py_modules=['gas/gas'],
     scripts=['bin/gas'],
     long_description=read('README.md'),
 )
