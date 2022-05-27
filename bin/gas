@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
-from gbk_annotation_stats.gbk_annotation_stats import main
+from gas.gas import gas
 
-parser = argparse.ArgumentParser(description="GBK annotation stats: Basic annotation statistics for eukaryotic genomes")
+parser = argparse.ArgumentParser(description="GAS (Genbank Annotation Statistics): Basic annotation statistics for eukaryotic genomes from Genbank files.")
 parser.add_argument('-o', action='store', dest='out', help='Output file')
 parser.add_argument('-g', action='store', dest='gbks', nargs='+', help='GenBank files for annotation stats. As many as you like.')
 
 args = parser.parse_args()
 
-main(args.gbks, args.out)
+gas(args.gbks, args.out)

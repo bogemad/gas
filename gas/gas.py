@@ -338,7 +338,7 @@ def intergenic_percent_gc(recs):
             intergene_seq += intergenes.extract(rec.seq)
     return round(GC(intergene_seq),2)
 
-def main(gbs, output):
+def gas(gbs, output):
     dfd = {}
     for gb in gbs:
         d = {}
