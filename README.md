@@ -4,7 +4,11 @@ Basic annotation statistics for eukaryotic genomes using Genbank files.
 ## Statistics currently calculated:
 
 ```
-Total predicted genes  
+Total predicted genes
+Total predicted mRNA
+Total predicted tRNA
+Total predicted rRNA
+Total predicted CDS
 Percentage coding  
 Total sequence length  
 Percentage GC  
