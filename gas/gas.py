@@ -2,7 +2,7 @@
 
 import sys, os
 from Bio import SeqIO
-from Bio.SeqUtils import GC
+from Bio.SeqUtils import gc_fraction
 from Bio.SeqFeature import CompoundLocation
 from Bio.SeqFeature import FeatureLocation
 import pandas as pd
@@ -70,7 +70,7 @@ def percentage_gc(recs):
             all_seq = rec.seq
         else:
             all_seq += rec.seq
-    return round(GC(all_seq),2)
+    return round(gc_fraction(all_seq),2)
 
 def longest_gene(recs):
     longest = 0
@@ -173,7 +173,7 @@ def exon_percent_gc(recs):
                     exon_seq = feat.extract(rec.seq)
                 else:
                     exon_seq += feat.extract(rec.seq)
-    return round(GC(exon_seq),2)
+    return round(gc_fraction(exon_seq),2)
 
 def total_number_of_introns(recs):
     i = 0
@@ -238,7 +238,7 @@ def shortest_intron(recs):
             if feat.type.endswith('RNA'):
                 if type(feat.location) == CompoundLocation:
                     for loc in convert_cpnd_loc_to_introns(feat.location, feat.strand).parts:
-                      shortest = min(shortest, len(loc))
+                        shortest = min(shortest, len(loc))
     return shortest
 
 def total_intron_length(recs):
@@ -267,7 +267,7 @@ def intron_percent_gc(recs):
                     intron_seq = locs.extract(rec.seq)
                 else:
                     intron_seq += locs.extract(rec.seq)
-    return round(GC(intron_seq),2)
+    return round(gc_fraction(intron_seq),2)
 
 def convert_genes_to_intergenes(genes, l):
     intergenes = []
@@ -368,7 +368,7 @@ def intergenic_percent_gc(recs):
             intergene_seq = intergenes.extract(rec.seq)
         else:
             intergene_seq += intergenes.extract(rec.seq)
-    return round(GC(intergene_seq),2)
+    return round(gc_fraction(intergene_seq),2)
 
 def run_gas(gbs, output):
     dfd = {}
