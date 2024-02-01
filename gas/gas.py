@@ -13,7 +13,7 @@ except ImportError:
     # If the newer function is not available, fall back to the older one
     from Bio.SeqUtils import GC as gc_fraction
     
-def total_predicted_genes(recs):
+def total_predicted_genes(recs): # Function to count total genes
     genes = []
     for rec in recs:
         for feat in rec.features:
@@ -136,7 +136,7 @@ def total_exon_length(recs):
     l = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 l += len(feat)
     return l
 
@@ -144,7 +144,7 @@ def total_number_of_exons(recs):
     i = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 for loc in feat.location.parts:
                     i += 1
     return i
@@ -153,7 +153,7 @@ def longest_exon(recs):
     longest = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 for loc in feat.location.parts:
                     longest = max(longest, len(loc))
     return longest
@@ -162,7 +162,7 @@ def shortest_exon(recs):
     shortest = 10000000
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 for loc in feat.location.parts:
                     shortest = min(shortest, len(loc))
     return shortest
@@ -174,7 +174,7 @@ def exon_percent_gc(recs):
     exon_seq = False
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 if exon_seq == False:
                     exon_seq = feat.extract(rec.seq)
                 else:
@@ -185,7 +185,7 @@ def total_number_of_introns(recs):
     i = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 if type(feat.location) == CompoundLocation:
                     i += (len(feat.location.parts) - 1)
     return i
@@ -228,7 +228,7 @@ def longest_intron(recs):
     longest = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 if type(feat.location) == CompoundLocation:
                     locs = convert_cpnd_loc_to_introns(feat.location, feat.strand)
                     if locs == []:
@@ -241,7 +241,7 @@ def shortest_intron(recs):
     shortest = 10000000
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 if type(feat.location) == CompoundLocation:
                     for loc in convert_cpnd_loc_to_introns(feat.location, feat.strand).parts:
                         shortest = min(shortest, len(loc))
@@ -251,7 +251,7 @@ def total_intron_length(recs):
     l = 0
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 l += len(convert_cpnd_loc_to_introns(feat.location, feat.strand))
     return l
 
@@ -265,7 +265,7 @@ def intron_percent_gc(recs):
     intron_seq = False
     for rec in recs:
         for feat in rec.features:
-            if feat.type.endswith('RNA'):
+            if feat.type == 'CDS':
                 locs = convert_cpnd_loc_to_introns(feat.location, feat.strand)
                 if locs == []:
                     continue
@@ -299,7 +299,7 @@ def convert_genes_to_intergenes(genes, l):
     if len(intergenes) == 0:
         return []
     if len(intergenes) == 1:
-        return intergenes
+        return intergenes[0]
     return CompoundLocation(intergenes)
 
 def total_intergenic_regions(recs):
