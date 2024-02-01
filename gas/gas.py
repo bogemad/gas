@@ -1,12 +1,18 @@
 #!/usr/bin/env python
 
 import sys, os
+import pkg_resources
 from Bio import SeqIO
-from Bio.SeqUtils import gc_fraction
 from Bio.SeqFeature import CompoundLocation
 from Bio.SeqFeature import FeatureLocation
 import pandas as pd
-
+try:
+    # Try importing the newer function (update function name if different in future versions)
+    from Bio.SeqUtils import gc_fraction
+except ImportError:
+    # If the newer function is not available, fall back to the older one
+    from Bio.SeqUtils import GC as gc_fraction
+    
 def total_predicted_genes(recs):
     genes = []
     for rec in recs:
